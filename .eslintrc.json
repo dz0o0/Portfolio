@@ -10,7 +10,7 @@
   "parserOptions": {
     "project": "./tsconfig.json"
   },
-  "plugins": ["unused-imports"],
+  "plugins": ["unused-imports", "strict-dependencies"],
   "rules": {
     "unused-imports/no-unused-imports": "error",
     "import/order": [
@@ -31,6 +31,20 @@
         }
       }
     ],
-    "react/jsx-sort-props": "error"
+    "react/jsx-sort-props": "error",
+    // import先を制限
+    "strict-dependencies/strict-dependencies": [
+      "error",
+      [
+        {
+          "module": "next/link",
+          "allowReferenceFrom": ["components/Link.tsx"],
+          "allowSameModule": false
+        }
+      ],
+      {
+        "resolveRelativeImport": true
+      }
+    ]
   }
 }
